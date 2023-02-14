@@ -1,5 +1,5 @@
-import { Schema } from "mongoose"; 
-const Schema = mongoose.Schema
+import { Schema } from "mongoose";
+
 
 export const HouseSchema = new Schema(
     {
