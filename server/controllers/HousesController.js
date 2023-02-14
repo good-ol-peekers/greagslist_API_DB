@@ -1,4 +1,5 @@
 import { Error } from "mongoose";
+import { housesService } from "../services/HousesService";
 import BaseController from "../utils/BaseController";
 
 export class HousesController extends BaseController {
@@ -6,6 +7,7 @@ export class HousesController extends BaseController {
         super('api/houses')
         this.router
         .get('', this.getHouses)
+        .post('', this.createHouse)
     }
 
 async getHouses(req, res, next){
@@ -17,5 +19,14 @@ async getHouses(req, res, next){
     }
 }
 
+async createHouse(req, res, next){
+    try {   
+        const houseData = req.body
+      const house = await housesService.createHouse(houseData)
+      res.send(house)
+    } catch (error) {
+        next(error)
+    }
+}
 
 }
